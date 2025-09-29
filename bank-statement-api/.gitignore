@@ -7,3 +7,6 @@ __pycache__/
 
 # Env file
 .env
+
+# Editor directories and files
+.idea
