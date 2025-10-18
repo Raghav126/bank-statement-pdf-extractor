@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./bank-statement-api
+      dockerfile: Dockerfile
+    ports:
+      - "8089:8089"  # Adjust port mapping as needed
+    environment:
+      - PYTHONUNBUFFERED=1
+    volumes:
+      - ./bank-statement-api:/app  # For development - remove for production
+    networks:
+      - app-network
+
+  frontend:
+    build:
+      context: ./bank-statement-UI
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"  # Adjust port mapping as needed
+    environment:
+      - NODE_ENV=development
+      - REACT_APP_API_URL=http://localhost:8000  # Update with your backend URL
+    volumes:
+      - ./bank-statement-UI:/app  # For development - remove for production
+      - /app/node_modules  # Prevent overwriting node_modules
+    depends_on:
+      - backend
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge

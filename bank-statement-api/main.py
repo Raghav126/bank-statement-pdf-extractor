@@ -362,7 +362,6 @@ async def start_process_bank_statement(
 
             # Save CSV locally
             df.to_csv(csv_path, index=False, encoding="utf-8")
-
             # Return saved CSV file
             return FileResponse(
                 path=csv_path,
@@ -423,7 +422,7 @@ async def process_bank_statement_json_only(
         # }
         for idx, item in enumerate(results, start=1):
             item["id"] = idx
-        print(results)
+        # print(results)
         return {"transactions": results}
             
     except Exception as e:

@@ -10,3 +10,6 @@ __pycache__/
 
 # Editor directories and files
 .idea
+
+# Output file
+bank_statement_csv_files_html_llm_output/
